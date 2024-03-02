@@ -1,15 +1,15 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
+import PostJob from './pages/PostJob'
 
 function App() {
   return (
-    <>
-    
-    <div className='w-[100%] text-3xl text-green-800 font-bold text-center'>App</div>
+    <> 
     <BrowserRouter>
         <Routes>
-          <Route exact path="/home" element={<Home/>} />
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/postjob" element={<PostJob/>} />
         </Routes>
       </BrowserRouter>
     </>
