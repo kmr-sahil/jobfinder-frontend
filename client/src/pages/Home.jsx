@@ -30,7 +30,7 @@ function Home() {
       try {
         const response = await axios.get("http://localhost:3000/api/v1/list")
         setPost(response.data.all.rows)
-        console.log(response.data.all.rows)
+        console.log(response)
     } catch (error) {
         console.log(error)
     }
