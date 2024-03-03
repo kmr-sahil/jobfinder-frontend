@@ -1,27 +1,8 @@
 import React, {useState} from 'react'
 import axios from "axios"
 
-function Form() {
+function Form({onSubmit, setJobDetails, jobDetails}) {
 
-    const [jobDeatils, setJobDetails] = useState({
-        company_name: '', //
-        website: '', //
-        job_title: '', //
-        work_loc: '', //
-        remote: true, //
-        job_link: '', //
-        description: '',
-    })
-
-    const onSubmit = async() => {
-        console.log(jobDeatils)
-        try {
-            const response = await axios.post("http://localhost:3000/api/v1/insert", jobDeatils)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
   return (
     <>
@@ -32,6 +13,7 @@ function Form() {
                 <input  className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
                         type="text" 
                         placeholder='Pied Piper'
+                        value={jobDetails.company_name}
                         onChange={(e) => setJobDetails(prevState => ({ ...prevState, company_name: e.target.value }))} />
             </div>
 
@@ -39,6 +21,7 @@ function Form() {
                 <label htmlFor="companyWebsite">Company Website</label>
                 <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
                        type="text" placeholder='https://:abc.com'
+                       value={jobDetails.website}
                        onChange={(e) => setJobDetails(prevState => ({ ...prevState, website: e.target.value }))} />
             </div>
 
@@ -60,6 +43,7 @@ function Form() {
                         <label htmlFor="jobTitle">Job Title</label>
                         <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
                                 type="text" placeholder='Full STack SOftware Engineer'
+                                value={jobDetails.job_title}
                                 onChange={(e) => setJobDetails(prevState => ({ ...prevState, job_title: e.target.value }))} />
                    </div>
 
@@ -80,6 +64,7 @@ function Form() {
                      <label htmlFor="jobTitle">Primary Location</label>
                      <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
                             type="text" placeholder='Sillicon Valley'
+                            value={jobDetails.work_loc}
                             onChange={(e) => setJobDetails(prevState => ({ ...prevState, work_loc: e.target.value }))} />
                 </div>
 
@@ -87,6 +72,7 @@ function Form() {
                      <label htmlFor="jobTitle">Employees may work remotely</label>
                      <select name="commitment" id="lang"
                              className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600'
+                             value={jobDetails.remote}
                              onChange={(e) => setJobDetails(prevState => ({ ...prevState, remote: e.target.value === 'true' }))}
                     >
                          <option value="true">Yes</option>
@@ -100,12 +86,14 @@ function Form() {
                 <label htmlFor="companyWebsite">Application URL or Public Email</label>
                 <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600'
                        type="text" placeholder='jobs@company.com'
+                       value={jobDetails.job_link}
                        onChange={(e) => setJobDetails(prevState => ({ ...prevState, job_link: e.target.value }))} />
             </div>
 
             <div className='flex flex-col w-[100%] gap-[0.5rem]'>
                 <label htmlFor="jobDesc">Job Description</label>
                 <textarea id="jobDesc" cols="30" rows="10" 
+                          value={jobDetails.description}
                           onChange={(e) => setJobDetails(prevState => ({ ...prevState, description: e.target.value }))}
                           className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600'
                           placeholder='The Full Stack Software Engineer will contribute to the development and optimization of our proprietary compression software. The ideal candidate will have strong experience with Python, Go, and distributed systems. They will be responsible for writing clean, efficient code and contributing to various stages of the software development lifecycle. Experience with machine learning algorithms is a plus.'
