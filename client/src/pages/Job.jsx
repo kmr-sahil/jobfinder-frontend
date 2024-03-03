@@ -24,7 +24,7 @@ function Job() {
     <div className='relative w-[42rem] mx-auto flex justify-between font-thin py-[2rem]'>
 
       <div className='w-[70%] flex flex-col items-start justify-center gap-[0.5rem] '>
-            <div className='w-[4rem] h-[4rem] bg-zinc-400 rounded-md'></div>
+            <a href={details.website} className='w-[4rem] h-[4rem] bg-zinc-400 rounded-md'></a>
             <h3 className='text-[1.5rem] text-zinc-500'>{details.company_name} is hiring for </h3>
             <h1 className='text-[2rem] font-bold'>{details.job_title}</h1>
             <h3 className='text-[1rem]'>{details.work_loc} <span className='text-[0.8rem] pl-[1rem]'>{details.remote ? "Remote" : null}</span></h3>
