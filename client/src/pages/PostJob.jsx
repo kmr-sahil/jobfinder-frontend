@@ -11,7 +11,10 @@ function PostJob() {
     work_loc: '', //
     remote: true, //
     job_link: '', //
+    commitment: '',
     description: '',
+    name: '',
+    email: ''
 })
 
 const onSubmit = async() => {
