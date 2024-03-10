@@ -11,7 +11,7 @@ function PostJob() {
     work_loc: '', //
     remote: true, //
     job_link: '', //
-    commitment: '',
+    commitment: 'Fulltime',
     description: '',
     name: '',
     email: ''
@@ -38,7 +38,7 @@ const onSubmit = async() => {
                 <p>We will automatically create a company profile with all your job listings.</p>
             </div>
 
-            <Form onSubmit={onSubmit} setJobDetails={setJobDetails} jobDetails={jobDetails} />
+            <Form onSubmit={onSubmit} setJobDetails={setJobDetails} jobDetails={jobDetails} isEdit={false}/>
 
     </div>
   )

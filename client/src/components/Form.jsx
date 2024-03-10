@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from "axios"
 
-function Form({onSubmit, setJobDetails, jobDetails}) {
+function Form({onSubmit, setJobDetails, jobDetails, isEdit}) {
 
 
   return (
@@ -105,28 +105,26 @@ function Form({onSubmit, setJobDetails, jobDetails}) {
 
             <hr className='border-[1px] border-zinc-200 w-[100%]' />
 
-            <div className='flex flex-col w-[100%] rounded-md my-[1rem]'>
-                <h3 className='text-[1.2rem]'>How can we reach you?</h3>
-                <p>This is just for the Startup Jobs team</p>
-            </div>
-
-            <div className='flex flex-col w-[40%] gap-[0.5rem]'>
-                <label htmlFor="companyWebsite">Name</label>
-                <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
-                        type="text" 
-                        placeholder='Richard Horlicks' 
-                        value={jobDetails.name}
-                          onChange={(e) => setJobDetails(prevState => ({ ...prevState, name: e.target.value }))}/>
-            </div>
-
-            <div className='flex flex-col w-[40%] gap-[0.5rem]'>
-                <label htmlFor="companyWebsite">Email</label>
-                <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600' 
-                        type="text"
-                        placeholder='RichardHorlicks@gmail.om' 
-                        value={jobDetails.email}
-                          onChange={(e) => setJobDetails(prevState => ({ ...prevState, email: e.target.value }))}/>
-            </div> 
+        {!isEdit && (
+            <><div className='flex flex-col w-[100%] rounded-md my-[1rem]'>
+                      <h3 className='text-[1.2rem]'>How can we reach you?</h3>
+                      <p>This is just for the Startup Jobs team</p>
+                  </div><div className='flex flex-col w-[40%] gap-[0.5rem]'>
+                          <label htmlFor="companyWebsite">Name</label>
+                          <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600'
+                              type="text"
+                              placeholder='Richard Horlicks'
+                              value={jobDetails.name}
+                              onChange={(e) => setJobDetails(prevState => ({ ...prevState, name: e.target.value }))} />
+                      </div><div className='flex flex-col w-[40%] gap-[0.5rem]'>
+                          <label htmlFor="companyWebsite">Email</label>
+                          <input className='w-[100%] border-[2px] rounded-md px-[1rem] py-[0.5rem] border-zinc-600'
+                              type="text"
+                              placeholder='RichardHorlicks@gmail.om'
+                              value={jobDetails.email}
+                              onChange={(e) => setJobDetails(prevState => ({ ...prevState, email: e.target.value }))} />
+                      </div></>
+            )}
 
             <div className='w-[100%] flex justify-end'>
                 <button onClick={onSubmit}

@@ -44,7 +44,7 @@ function EditPost() {
         
         <h1 className='text-[2rem]'>Edit your Job Post</h1>
 
-        <Form onSubmit={onSubmit} setJobDetails={setJobDetails} jobDetails={jobDetails} />
+        <Form onSubmit={onSubmit} setJobDetails={setJobDetails} jobDetails={jobDetails} isEdit={true}/>
 
     </div>
   )
