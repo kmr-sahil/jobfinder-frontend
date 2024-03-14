@@ -18,6 +18,7 @@ function EditPost() {
         async function get() {
             try {
                 const id = window.location.href.split("/")[4]
+                console.log(id)
                 const response = await axios.get(`http://localhost:3000/api/v1/job/${id}`)
                 setJobDetails(response.data.result.rows[0])
                 console.log(response)
@@ -29,7 +30,6 @@ function EditPost() {
     }, [])
     
     const onSubmit = async() => {
-        console.log(jobDetails)
         try {
             const id = window.location.href.split("/")[4]
             const response = await axios.put(`http://localhost:3000/api/v1/update/${id}`, jobDetails)
