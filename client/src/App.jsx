@@ -6,6 +6,7 @@ import Job from './pages/Job'
 import EditPost from './pages/EditPost'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route exact path='/job/:id' element={<Job />} />
           <Route exact path='/editpost/:id' element={<EditPost />} />
           <Route exact path='/dashboard' element={<Dashboard/>} />
-          <Route exact path='/login' element={<Login/>} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </>

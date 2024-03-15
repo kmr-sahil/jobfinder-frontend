@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Dashboard() {
@@ -8,20 +8,31 @@ function Dashboard() {
   const [modal, setModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState(null);
 
-  const onSubmit = async () => {
-    try {
-      const response = await axios.post("http://localhost:3000/api/v1/users-list", { email: email });
-      console.log(response);
-      setPostData(response.data.all);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const token = localStorage.getItem("token") || false;
+            const responseVerify = await axios.get(`http://localhost:3000/api/v1/verifyuser`, { headers: { "Authorization": `Bearer ${token}` } });
+            setEmail(responseVerify.data.email);
+            console.log(responseVerify.data.email);
+
+            const responseSubmit = await axios.post("http://localhost:3000/api/v1/users-list", { email: responseVerify.data.email }, { headers: { "Authorization": `Bearer ${token}` } });
+            console.log(responseSubmit);
+            setPostData(responseSubmit.data.all);
+        } catch (error) {
+            console.error("Error:", error);
+            console.log("please login")
+        }
+    };
+
+    fetchData();
+}, []);
 
   const onDelete = async (id) => {
     console.log(id)
     try {
-      const response = await axios.delete(`http://localhost:3000/api/v1/delete/${id}`);
+      const token = localStorage.getItem("token") || false;
+      const response = await axios.delete(`http://localhost:3000/api/v1/delete/${id}`, { headers: { "Authorization": `Bearer ${token}` }} );
       console.log(response);
       // After deleting, close the modal and reset postIdToDelete
       setModal(false);
@@ -42,18 +53,18 @@ function Dashboard() {
         </div>
       )}
 
-      <input type="text"
+      {/*<input type="text"
         placeholder='email'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      <button onClick={onSubmit}>Submit</button>
+      <button onClick={onSubmit}>Submit</button>*/}
 
       <h1>Welcome Smith</h1>
 
       {postData.map((post) => (
-        <div key={post.id} className='flex items-center gap-[1rem] px-[1rem] py-[0.5rem] bg-zinc-100'>
+        <div key={post.id} className='flex items-center gap-[1rem] px-[1rem] py-[0.5rem] bg-zinc-100 mt-[1rem]'>
           <div className='w-[4rem] h-[4rem] bg-zinc-400 rounded-md'></div>
           <div>
             <h2>{post.job_title}</h2>

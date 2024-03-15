@@ -31,8 +31,9 @@ function EditPost() {
     
     const onSubmit = async() => {
         try {
+            const token = localStorage.getItem("token") || false;
             const id = window.location.href.split("/")[4]
-            const response = await axios.put(`http://localhost:3000/api/v1/update/${id}`, jobDetails)
+            const response = await axios.put(`http://localhost:3000/api/v1/update/${id}`, jobDetails, { headers: { "Authorization": `Bearer ${token}` } })
             console.log(response)
         } catch (error) {
             console.log(error)
